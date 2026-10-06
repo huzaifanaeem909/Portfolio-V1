@@ -1,0 +1,58 @@
+"use client"
+
+import dynamic from "next/dynamic"
+import { useState, useEffect } from "react"
+import { prefersReducedMotion } from "@/lib/motion-prefs"
+import { supportsWebGL } from "@/lib/webgl"
+
+function HeroParticleFallback() {
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none overflow-hidden"
+      aria-hidden
+      style={{
+        background:
+          "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(232, 68, 47,0.08), transparent 70%)",
+      }}
+    />
+  )
+}
+
+const HeroParticleCanvas = dynamic(
+  () => import("@/components/effects/hero-particle-canvas").then((m) => m.HeroParticleCanvas).catch(() => ({ default: () => null })),
+  { ssr: false, loading: () => <HeroParticleFallback /> }
+)
+
+/** Loads Three.js only on desktop — mobile gets CSS gradient only. */
+export function HeroParticleField() {
+  const [mounted, setMounted] = useState(false)
+  const [allowCanvas, setAllowCanvas] = useState(false)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    const desktop = window.matchMedia("(min-width: 1024px)").matches
+    setReduceMotion(prefersReducedMotion())
+    if (!desktop || prefersReducedMotion()) return
+
+    let idleId = 0
+    let timer = 0
+    const enable = () => setAllowCanvas(supportsWebGL())
+
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(enable, { timeout: 5000 })
+    } else {
+      timer = window.setTimeout(enable, 3000)
+    }
+
+    return () => {
+      if (idleId) window.cancelIdleCallback(idleId)
+      if (timer) window.clearTimeout(timer)
+    }
+  }, [])
+
+  if (!mounted) return <HeroParticleFallback />
+  if (reduceMotion || !allowCanvas) return <HeroParticleFallback />
+
+  return <HeroParticleCanvas />
+}

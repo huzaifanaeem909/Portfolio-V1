@@ -1,0 +1,75 @@
+{
+  "products": [
+    {
+      "slug": "kickoff-forge",
+      "name": "Kickoff Forge",
+      "tagline": "Turn a vague client chat into a clear build plan before you write code.",
+      "description": "A six-template freelance kickoff pack: discovery call notes, scope one-pager, estimate bands, tech decisions, week-one plan, and handoff checklist. Fill the blanks, send to the client, then ship.",
+      "priceLabel": "$19",
+      "buyUrl": "https://logicwave7.gumroad.com/l/kickoff-forge",
+      "checkout": "both",
+      "demoUrl": "",
+      "problem": "",
+      "solution": "",
+      "howBuilt": "",
+      "screenshots": [],
+      "downloadUrl": "/downloads/kickoff-forge.zip",
+      "includes": [
+        "Discovery call worksheet",
+        "Scope one-pager for written sign-off",
+        "Estimate sheet with lean / standard / protected bands",
+        "Tech decision sheet",
+        "Week-one delivery plan + demo agenda",
+        "Launch handoff checklist"
+      ],
+      "idealFor": [
+        "Freelancers who lose time to unclear scopes",
+        "Developers starting client MVPs",
+        "Anyone who wants a repeatable kickoff ritual"
+      ],
+      "starterPath": "digital-products/kickoff-forge",
+      "enabled": true
+    },
+    {
+      "slug": "syncforge-calendar",
+      "name": "SyncForge",
+      "tagline": "Every company calendar on one private team board.",
+      "description": "Personal multi-company schedule product (Kickoff Forge family). Connect Google and Outlook/ICS, label each source as a company, and see conflicts and free time without leaking join links. First install records who bought it, then creates the admin.",
+      "priceLabel": "Private build",
+      "buyUrl": "",
+      "checkout": "gumroad",
+      "demoUrl": "",
+      "problem": "Working across several client companies meant living in many Google and Outlook calendars at once. The team could not answer a simple question: who is free, who is double-booked, and which company owns this hour? Sharing raw calendar links exposed join URLs and meeting notes. Spreadsheets and screenshots went stale within minutes.",
+      "solution": "SyncForge pulls every connected company calendar into one color-coded team schedule. Members see availability, conflicts, and free slots. An optional public page shows busy/free and titles only: no descriptions, locations, or meeting URLs. Admins connect sources, set company labels and colors, import ICS/PDF when OAuth is not available, and hit Sync now instead of waiting for the next cron tick. First install captures buyer license details for anyone who purchases from you.",
+      "howBuilt": "Monorepo: Next.js dashboard, Bun HTTP API, Drizzle on Postgres, Redis + BullMQ for ingest and push jobs, Better Auth for email/password (first user is admin). Cron ingests Google OAuth and ICS feeds into normalized event state; the UI reads Postgres rather than hitting Google on every page load. Schedule range indexes and short response caches keep the board snappy. Client production stays private; this portfolio shows sanitized mock screenshots only (Acme, Contoso, Northwind).",
+      "screenshots": [
+        "/projects/syncforge-week.png",
+        "/projects/syncforge-admin.png",
+        "/projects/syncforge-public.png"
+      ],
+      "downloadUrl": "",
+      "includes": [
+        "Multi-source sync: Google OAuth + ICS/iCal (Outlook publish links)",
+        "Company labels, colors, and company filter",
+        "Conflict detection across synced calendars",
+        "Free-time finder across the team week",
+        "Day, week, month, and agenda views",
+        "First-install buyer / license capture",
+        "Private authenticated schedule for the team",
+        "Privacy-safe public schedule (busy/free + title only)",
+        "Import .ics files or Outlook print PDFs",
+        "Manual meeting entry when a source is missing",
+        "Admin user management and Sync now",
+        "Background ingest + push reconciliation"
+      ],
+      "idealFor": [
+        "Agencies and freelancers with many client calendars",
+        "Ops teams that need one wall of company meetings",
+        "Teams that cannot share raw Google/Outlook links company-wide",
+        "Anyone who wants a similar private calendar hub built for them"
+      ],
+      "starterPath": "",
+      "enabled": true
+    }
+  ]
+}

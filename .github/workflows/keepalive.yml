@@ -1,0 +1,35 @@
+name: Keep server awake
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/keepalive.yml
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Ping production health
+        env:
+          SITE_URL_VAR: ${{ vars.SITE_URL }}
+        run: |
+          set -euo pipefail
+          URL="https://alihamza-fawn.vercel.app"
+          if [ -n "${SITE_URL_VAR}" ]; then
+            URL="${SITE_URL_VAR%/}"
+          fi
+          echo "Pinging ${URL}/api/health"
+          for attempt in 1 2 3; do
+            body="$(curl -fsS --max-time 30 "${URL}/api/health")"
+            echo "$body"
+            echo "$body" | grep -q '"ok":true' && echo "Health OK" && exit 0
+            echo "Attempt ${attempt} failed, retrying..."
+            sleep 5
+          done
+          echo "Health check failed after 3 attempts"
+          exit 1

@@ -1,0 +1,183 @@
+/**
+ * Digital products sold via Gumroad (or similar).
+ * Managed in Admin → Products (content/products.json).
+ */
+
+/** How buyers pay: Gumroad link, direct (your bank details + proof), or both. */
+export type ProductCheckout = "gumroad" | "direct" | "both"
+
+export type DigitalProduct = {
+  slug: string
+  name: string
+  tagline: string
+  description: string
+  priceLabel: string
+  /** Gumroad (or other) checkout URL. Empty = not for sale yet. */
+  buyUrl: string
+  /**
+   * Checkout mode. Default: gumroad if buyUrl set, else direct if enabled later.
+   * - gumroad: Buy on Gumroad only
+   * - direct: pay you (bank / JazzCash) + proof in admin
+   * - both: show Gumroad and direct
+   */
+  checkout: ProductCheckout
+  /** Optional live demo / app URL (shown as Open live demo). Leave empty for private builds. */
+  demoUrl: string
+  /** Case study: the pain before the product */
+  problem: string
+  /** Case study: what the product does */
+  solution: string
+  /** Case study: how it was built */
+  howBuilt: string
+  /** Portfolio-safe screenshots (public paths). Never point these at live prod with real data. */
+  screenshots: string[]
+  /** Sent by email after you mark an order paid (direct sales). */
+  downloadUrl: string
+  includes: string[]
+  idealFor: string[]
+  /** Path inside repo for the deliverable (zip this for Gumroad) */
+  starterPath: string
+  /** When false, hidden from public /products list */
+  enabled: boolean
+}
+
+export type ProductsConfig = {
+  products: DigitalProduct[]
+}
+
+export const EMPTY_PRODUCTS: ProductsConfig = {
+  products: [],
+}
+
+function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 64)
+}
+
+function asStringList(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return []
+  return raw.map((x) => String(x).trim()).filter(Boolean)
+}
+
+export function normalizeProduct(
+  raw: Partial<DigitalProduct> & { name?: string },
+  fallbackSlug?: string
+): DigitalProduct | null {
+  const name = String(raw.name || "").trim()
+  if (!name) return null
+  const slug = String(raw.slug || fallbackSlug || slugify(name) || `product-${Date.now()}`)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/^-|-$/g, "")
+  if (!slug) return null
+
+  const buyUrl = String(raw.buyUrl || "").trim()
+  if (buyUrl) {
+    try {
+      const u = new URL(buyUrl)
+      if (u.protocol !== "http:" && u.protocol !== "https:") return null
+    } catch {
+      return null
+    }
+  }
+
+  const checkoutRaw = String((raw as { checkout?: string }).checkout || "")
+    .trim()
+    .toLowerCase()
+  let checkout: ProductCheckout =
+    checkoutRaw === "direct" || checkoutRaw === "both" || checkoutRaw === "gumroad"
+      ? checkoutRaw
+      : buyUrl
+        ? "gumroad"
+        : "direct"
+
+  const downloadUrl = String((raw as { downloadUrl?: string }).downloadUrl || "").trim()
+  if (downloadUrl) {
+    if (downloadUrl.startsWith("/")) {
+      // Same-origin path, e.g. /downloads/kickoff-forge.zip
+    } else {
+      try {
+        const u = new URL(downloadUrl)
+        if (u.protocol !== "http:" && u.protocol !== "https:") return null
+      } catch {
+        return null
+      }
+    }
+  }
+
+  const demoUrl = String((raw as { demoUrl?: string }).demoUrl || "").trim()
+  if (demoUrl) {
+    try {
+      const u = new URL(demoUrl)
+      if (u.protocol !== "http:" && u.protocol !== "https:") return null
+    } catch {
+      return null
+    }
+  }
+
+  return {
+    slug,
+    name,
+    tagline: String(raw.tagline || "").trim(),
+    description: String(raw.description || "").trim(),
+    priceLabel: String(raw.priceLabel || "").trim() || "$0",
+    buyUrl,
+    checkout,
+    demoUrl,
+    problem: String((raw as { problem?: string }).problem || "").trim(),
+    solution: String((raw as { solution?: string }).solution || "").trim(),
+    howBuilt: String((raw as { howBuilt?: string }).howBuilt || "").trim(),
+    screenshots: asStringList((raw as { screenshots?: unknown }).screenshots),
+    downloadUrl,
+    includes: asStringList(raw.includes),
+    idealFor: asStringList(raw.idealFor),
+    starterPath: String(raw.starterPath || "").trim(),
+    enabled: raw.enabled !== false,
+  }
+}
+
+export function normalizeProductsConfig(raw: unknown): ProductsConfig {
+  const data = (raw && typeof raw === "object" ? raw : {}) as Partial<ProductsConfig>
+  const products: DigitalProduct[] = []
+  const seen = new Set<string>()
+  for (const item of Array.isArray(data.products) ? data.products : []) {
+    const p = normalizeProduct(item as DigitalProduct)
+    if (!p || seen.has(p.slug)) continue
+    seen.add(p.slug)
+    products.push(p)
+  }
+  return { products }
+}
+
+export function publicProducts(products: DigitalProduct[]): DigitalProduct[] {
+  return products.filter((p) => p.enabled)
+}
+
+export function productIsOnSale(product: DigitalProduct): boolean {
+  return productAllowsGumroad(product) || productAllowsDirect(product)
+}
+
+export function productAllowsGumroad(product: DigitalProduct): boolean {
+  if (!product.buyUrl?.trim()) return false
+  return product.checkout === "gumroad" || product.checkout === "both"
+}
+
+export function productAllowsDirect(product: DigitalProduct): boolean {
+  return product.checkout === "direct" || product.checkout === "both"
+}
+
+/** Sync helpers used by pages that still import from this module. Prefer products-store on server. */
+export function getProductFromList(
+  products: DigitalProduct[],
+  slug: string
+): DigitalProduct | undefined {
+  return products.find((p) => p.slug === slug)
+}
+
+export function getProductSlugsFromList(products: DigitalProduct[]): string[] {
+  return products.map((p) => p.slug)
+}

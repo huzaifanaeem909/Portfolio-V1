@@ -1,0 +1,51 @@
+import type { Experience } from "./types"
+
+export const experiences: Experience[] = [
+  {
+    id: "birxment",
+    role: "Full Stack Software Engineer",
+    company: "Birxment",
+    period: "August 2025 - Present",
+    location: "Remote",
+    description:
+      "Lead engineer on a blockchain indexer and an AWS serverless healthcare and e-commerce platform. Responsible for architecture, REST API development, and production deployment.",
+    achievements: [
+      "Built microservice backends with Node.js, Moleculer.js, BullMQ, PostgreSQL, and Redis serving web, Android, and WebSocket clients",
+      "Containerized services with Docker and Kubernetes; established CI/CD with Jest and code reviews, reducing production defects by 40%",
+      "Delivered 20+ REST API endpoints for inventory, orders, and operational workflows",
+      "Mentored 2 junior developers and improved PR turnaround by 25%",
+    ],
+    technologies: ["Node.js", "Moleculer.js", "BullMQ", "PostgreSQL", "Redis", "Docker", "Kubernetes", "AWS"],
+  },
+  {
+    id: "exec9",
+    role: "MERN Stack Developer",
+    company: "Exec9",
+    period: "June 2024 - July 2025",
+    location: "Remote",
+    description:
+      "Full stack developer on 6+ production applications across e-commerce, CMS, and Web3, from API design through frontend implementation.",
+    achievements: [
+      "Deployed 5+ Solidity smart contracts with wallet integration for NFT and DeFi platforms",
+      "Built REST and GraphQL APIs with 10+ third-party service integrations",
+      "Built responsive React and Next.js interfaces with reusable components, improving page load times by 30%",
+      "Developed Senzi dropshipping platform with automated catalog sync for 5,000+ SKUs",
+    ],
+    technologies: ["MongoDB", "Express", "React", "Next.js", "Solidity", "Ethers.js", "GraphQL"],
+  },
+  {
+    id: "explore-logics",
+    role: "React.js Developer",
+    company: "Explore Logics",
+    period: "July 2023 - May 2024",
+    location: "Lahore, Pakistan",
+    description:
+      "Frontend developer migrating legacy HTML and WordPress sites to React.js and maintaining 8+ client-facing applications.",
+    achievements: [
+      "Reduced page load times by 50% and maintenance effort by 35% through React migrations",
+      "Built cross-browser responsive layouts tested across 5+ browsers",
+      "Shipped features in two-week agile sprints over a 10-month engagement",
+    ],
+    technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Agile"],
+  },
+]

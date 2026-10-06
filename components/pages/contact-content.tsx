@@ -1,0 +1,152 @@
+"use client"
+
+import type { FormEvent } from "react"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { Mail, MapPin, Phone, Github, Linkedin, Send } from "lucide-react"
+import { PremiumIcon, PremiumPage, PremiumReveal } from "@/components/premium"
+import { SectionHeading } from "@/components/ui/section-heading"
+import { PremiumCard } from "@/components/ui/premium-card"
+import { RippleButton } from "@/components/ui/ripple-button"
+import { siteConfig } from "@/lib/site"
+import { offsiteAnchorProps } from "@/lib/navigation"
+
+const TOPIC_PRESETS: Record<string, { subject: string; message: string }> = {
+  "syncforge-install": {
+    subject: "SyncForge private install",
+    message:
+      "Hi Ali,\n\nI am interested in a private SyncForge install.\n\nPackage: [private install $1.5k-$3.5k / full setup $4k-$8k]\nCalendar sources I need: [Google / Outlook ICS / count]\nTeam size:\nPreferred timeline:\n\nThanks.",
+  },
+  hire: {
+    subject: "Hire Ali Hamza",
+    message:
+      "Hi Ali,\n\nI found you via Click Case Files / your portfolio.\n\nWhat I need built:\nWho will use it:\nTimeline:\nBudget range (optional):\n\nThanks.",
+  },
+}
+
+export function ContactContent() {
+  const searchParams = useSearchParams()
+  const [form, setForm] = useState({ name: "", email: "", message: "" })
+  const [subjectHint, setSubjectHint] = useState("Inquiry")
+
+  useEffect(() => {
+    const topic = (searchParams.get("topic") || "").trim().toLowerCase()
+    const preset = TOPIC_PRESETS[topic]
+    if (!preset) return
+    setSubjectHint(preset.subject)
+    setForm((prev) => (prev.message.trim() ? prev : { ...prev, message: preset.message }))
+  }, [searchParams])
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const subject = encodeURIComponent(`${subjectHint} from ${form.name}`)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`
+  }
+
+  const rows: {
+    icon: typeof Mail
+    label: string
+    value: string
+    href?: string
+  }[] = [
+    { icon: Mail, label: "Email", value: siteConfig.email, href: siteConfig.social.email },
+    { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s+/g, "")}` },
+    { icon: MapPin, label: "Location", value: siteConfig.location },
+    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/alihamza-fullstack-developer", href: siteConfig.social.linkedin },
+    { icon: Github, label: "GitHub", value: `github.com/${siteConfig.githubUsername}`, href: siteConfig.social.github },
+  ]
+
+  return (
+    <PremiumPage narrow>
+      <SectionHeading
+        headingLevel={1}
+        label="Contact"
+        title="Contact"
+        description="Describe your project, role, or technical requirements. I reply within one business day."
+        align="center"
+        className="mx-auto"
+      />
+
+      <div className="grid lg:grid-cols-5 gap-5 lg:items-stretch">
+        <PremiumReveal className="lg:col-span-2 flex flex-col gap-3">
+          {rows.map((item) => (
+            <PremiumCard key={item.label} className="!p-4 shrink-0" hover={false}>
+              {item.href ? (
+                <a href={item.href} {...offsiteAnchorProps(item.href)} className="flex gap-4 group">
+                  <PremiumIcon icon={item.icon} size={20} />
+                  <div>
+                    <p className="text-xs text-neutral-500 uppercase tracking-wider">{item.label}</p>
+                    <p className="text-sm text-white break-all sm:break-normal group-hover:text-[var(--accent-primary)] transition-colors mt-1">
+                      {item.value}
+                    </p>
+                  </div>
+                </a>
+              ) : (
+                <div className="flex gap-4">
+                  <PremiumIcon icon={item.icon} size={20} />
+                  <div>
+                    <p className="text-xs text-neutral-500 uppercase tracking-wider">{item.label}</p>
+                    <p className="text-sm text-white mt-1">{item.value}</p>
+                  </div>
+                </div>
+              )}
+            </PremiumCard>
+          ))}
+        </PremiumReveal>
+
+        <PremiumReveal delay={0.1} className="lg:col-span-3 flex flex-col min-h-0">
+          <PremiumCard hover={false} className="flex-1 flex flex-col !p-4 sm:!p-5 min-h-0">
+            <form onSubmit={handleSubmit} className="flex flex-col flex-1 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4 shrink-0">
+                <div>
+                  <label htmlFor="contact-name" className="block text-xs font-medium text-neutral-500 mb-1.5">
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="input-premium"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="block text-xs font-medium text-neutral-500 mb-1.5">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="input-premium"
+                    placeholder="you@company.com"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col flex-1 min-h-[120px]">
+                <label htmlFor="contact-message" className="block text-xs font-medium text-neutral-500 mb-1.5 shrink-0">
+                  Message
+                </label>
+                <textarea
+                  id="contact-message"
+                  required
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="input-premium resize-none flex-1 min-h-[120px] w-full"
+                  placeholder="What are you building? Include timeline and stack if known."
+                />
+              </div>
+              <RippleButton type="submit" className="w-full sm:w-auto">
+                Send message <Send className="h-4 w-4" />
+              </RippleButton>
+            </form>
+          </PremiumCard>
+        </PremiumReveal>
+      </div>
+    </PremiumPage>
+  )
+}

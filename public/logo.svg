@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none">
+  <g transform="translate(4 4) scale(0.85)">
+    <path d="M4 44 L18 6 H24" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
+    <path d="M28 6 V44" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
+    <path d="M40 6 V44" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
+    <path d="M8 30 L42 16" stroke="#e8442f" stroke-width="3" stroke-linecap="square"/>
+  </g>
+  <text x="52" y="22" fill="#ede9e1" font-family="system-ui,sans-serif" font-size="12" font-weight="700" letter-spacing="0.18em">ALI</text>
+  <text x="52" y="38" fill="#e8442f" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="0.28em">HAMZA</text>
+</svg>

@@ -1,0 +1,54 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+# env files
+.env*
+
+.tmp/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# auth OTP & sessions (local only)
+/data/
+
+# digital product starter (own install if developed locally)
+/digital-products/**/node_modules/
+/digital-products/**/.next/
+
+# editor - keep shared Cursor rules in git
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
+.cursorindexingignore
+*.code-workspace
+
+# local ops / channel tooling (not portfolio)
+.playwright-mcp/
+scripts/*bookmarks*
+scripts/APPLY-BehindThePrice*
+scripts/FIX-BOOKMARKS*
+
+# graphify
+graphify-out

@@ -1,0 +1,18 @@
+{
+  "name": "Huzaifa Naeem",
+  "title": "Full Stack Developer",
+  "tagline": "MERN · AWS Serverless · Blockchain",
+  "headline": "Web applications, cloud infrastructure, REST APIs, and blockchain integrations in production.",
+  "description": "Huzaifa Naeem is a Full Stack Developer in Lahore building MERN, Next.js, AWS serverless, REST APIs, and blockchain apps for startups and product teams worldwide.",
+  "email": "dev.huzaifa.naeem@gmail.com",
+  "phone": "+92 316 0406057",
+  "location": "Lahore, Pakistan",
+  "education": "B.S. Computer Science, University of Lahore (2019-2023)",
+  "available": true,
+  "githubUsername": "huzaifanaeem909",
+  "social": {
+    "github": "https://github.com/huzaifanaeem909",
+    "linkedin": "https://www.linkedin.com/in/huzaifa-naeem/",
+    "email": "mailto:dev.huzaifa.naeem@gmail.com"
+  }
+}

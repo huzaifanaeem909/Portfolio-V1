@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm ci --include=dev",
+  "buildCommand": "npm run build",
+  "framework": "nextjs",
+  "git": {
+    "deploymentEnabled": {
+      "*": false,
+      "main": true
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/keepalive",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/github-sync",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/blog-agent",
+      "schedule": "0 10 * * *"
+    }
+  ]
+}
