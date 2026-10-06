@@ -1,7 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 48 48"
+  fill="none"
+>
   <rect width="48" height="48" fill="#050507"/>
-  <path d="M4 44 L18 6 H24" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
-  <path d="M28 6 V44" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
-  <path d="M40 6 V44" stroke="#ede9e1" stroke-width="2.6" stroke-linecap="square"/>
-  <path d="M8 30 L42 16" stroke="#e8442f" stroke-width="3" stroke-linecap="square"/>
+
+  <!-- H -->
+  <path
+    d="M7 6 V44"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <path
+    d="M23 6 V44"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <path
+    d="M7 25 H23"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <!-- N -->
+  <path
+    d="M29 44 V6"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <path
+    d="M29 6 L41 44"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <path
+    d="M41 44 V6"
+    stroke="#ede9e1"
+    stroke-width="2.6"
+    stroke-linecap="square"
+    fill="none"
+  />
+
+  <!-- Signature diagonal slash -->
+  <path
+    d="M6 30 L42 16"
+    stroke="#e8442f"
+    stroke-width="3"
+    stroke-linecap="square"
+    fill="none"
+  />
 </svg>
