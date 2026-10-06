@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site"
 /** Primary keywords for portfolio discovery in search */
 export const SEO_KEYWORDS = [
   siteConfig.name,
-  "Ali Hamza Full Stack Developer",
+  "Huzaifa Naeem Full Stack Developer",
   "Full Stack Developer",
   "Full Stack Developer Lahore",
   "Full Stack Developer Pakistan",
@@ -35,7 +35,7 @@ export function absoluteUrl(path = ""): string {
 export const DEFAULT_OG_PATH = "/og.png"
 
 /** Ideal SERP length: 50–60 characters */
-export const HOME_PAGE_TITLE = "Ali Hamza | Full Stack Developer in Lahore, Pakistan"
+export const HOME_PAGE_TITLE = "Huzaifa Naeem | Full Stack Developer in Lahore, Pakistan"
 
 type PageSeoOptions = {
   /** Page title segment (template adds site name in root layout) */

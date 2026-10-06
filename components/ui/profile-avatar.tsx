@@ -16,7 +16,7 @@ interface ProfileAvatarProps {
 
 export function ProfileAvatar({
   src = null,
-  name = "Ali Hamza",
+  name = "Huzaifa Naeem",
   size = 200,
   className,
   showRing = true,

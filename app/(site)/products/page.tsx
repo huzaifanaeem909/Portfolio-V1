@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/seo"
 export const metadata = buildPageMetadata({
   title: "Products",
   description:
-    "Products by Ali Hamza: Kickoff Forge freelance kickoff templates, and SyncForge for multi-company schedule sync.",
+    "Products by Huzaifa Naeem: Kickoff Forge freelance kickoff templates, and SyncForge for multi-company schedule sync.",
   path: "/products",
 })
 

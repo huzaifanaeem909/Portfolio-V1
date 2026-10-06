@@ -138,7 +138,7 @@ export function DirectBuyPanel({ productSlug, productName, priceLabel }: Props) 
       <div className="mb-8">
         <p className="meta-label mb-3">Buy directly</p>
         <h2 className="text-2xl font-semibold text-white tracking-tight">
-          {payment.headline || "Pay Ali Hamza directly"}
+          {payment.headline || "Pay Huzaifa Naeem directly"}
         </h2>
         <p className="mt-2 text-sm text-neutral-400 max-w-xl leading-relaxed">
           Three short steps. No Gumroad account needed. You get the files by email after payment is confirmed.

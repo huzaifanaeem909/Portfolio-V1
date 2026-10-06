@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/seo"
 export const metadata = buildPageMetadata({
   title: "Free viral packaging checklist",
   description:
-    "Free checklist from Ali Hamza / Click Case Files: title, thumbnail, first 3 seconds, and retention checks before you publish a Short.",
+    "Free checklist from Huzaifa Naeem / Click Case Files: title, thumbnail, first 3 seconds, and retention checks before you publish a Short.",
   path: "/free/viral-packaging-checklist",
 })
 

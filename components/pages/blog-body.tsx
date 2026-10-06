@@ -153,5 +153,5 @@ export function BlogReferences({ references }: { references: BlogPost["reference
 }
 
 export function blogSourceLabel(post: BlogPost) {
-  return post.author || post.source || "Ali Hamza"
+  return post.author || post.source || "Huzaifa Naeem"
 }

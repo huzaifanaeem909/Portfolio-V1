@@ -9,7 +9,7 @@ export const metadata = buildPageMetadata({
   path: "/blog",
   type: "website",
   keywords: [
-    "Ali Hamza blog",
+    "Huzaifa Naeem blog",
     "freelance developer blog",
     "side hustle tips",
     "AI tools for freelancers",

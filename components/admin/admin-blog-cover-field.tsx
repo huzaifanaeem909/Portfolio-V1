@@ -84,7 +84,7 @@ export function AdminBlogCoverField({
         URL.revokeObjectURL(localPreview)
         setLocalPreview(null)
       }
-      onCoverChange(DEFAULT_BLOG_COVER, "Ali Hamza - Full Stack Developer")
+      onCoverChange(DEFAULT_BLOG_COVER, "Huzaifa Naeem - Full Stack Developer")
     }
   }
 
@@ -129,7 +129,7 @@ export function AdminBlogCoverField({
 
       {mode === "default" && (
         <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
-          Uses the Ali Hamza brand placeholder. Fine for drafts and posts without a custom image.
+          Uses the Huzaifa Naeem brand placeholder. Fine for drafts and posts without a custom image.
         </p>
       )}
 

@@ -11,7 +11,7 @@ export const metadata = buildPageMetadata({
   description: `Production projects by ${siteConfig.name}: blockchain indexer (Verana), Adam Store e-commerce, Senzi dropshipping, UniLabs DeFi, KYPI dashboards, and REST API systems.`,
   path: "/projects",
   keywords: [
-    "Ali Hamza projects",
+    "Huzaifa Naeem projects",
     "MERN stack portfolio",
     "blockchain project portfolio",
     "full stack case studies",

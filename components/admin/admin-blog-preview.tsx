@@ -39,9 +39,9 @@ export function AdminBlogPreview(form: PreviewInput) {
     date: form.date || new Date().toISOString().slice(0, 10),
     readTime: estimateReadTime(form.body || "word"),
     category: form.category || "Full Stack",
-    author: form.author || "Ali Hamza",
+    author: form.author || "Huzaifa Naeem",
     coverImage: resolveBlogCover(form.coverImage),
-    coverImageAlt: form.coverImageAlt || "Ali Hamza - Full Stack Developer",
+    coverImageAlt: form.coverImageAlt || "Huzaifa Naeem - Full Stack Developer",
     tags: tags.length ? tags : undefined,
     youtubeUrl: form.youtubeUrl || undefined,
     body: form.body.trim() || "_Start writing in the Write tab. Preview uses the same renderer as the live blog._",
@@ -120,4 +120,4 @@ code block
 ![Alt text](https://image-url.jpg)
 
 Cover image: Brand default, copyright-free live URL (Pexels/Unsplash), or upload to /blog/covers.
-Remote images must be copyright-free. If none set, the Ali Hamza brand placeholder is used.`
+Remote images must be copyright-free. If none set, the Huzaifa Naeem brand placeholder is used.`

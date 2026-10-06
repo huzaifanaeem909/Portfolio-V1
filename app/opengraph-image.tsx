@@ -64,7 +64,7 @@ export default function OgImage() {
             {siteConfig.tagline}
           </div>
         </div>
-        <div style={{ fontSize: 17, color: "#5e5c64" }}>github.com/alihamzaio</div>
+        <div style={{ fontSize: 17, color: "#5e5c64" }}>github.com/huzaifanaeem909</div>
       </div>
     ),
     { ...size }

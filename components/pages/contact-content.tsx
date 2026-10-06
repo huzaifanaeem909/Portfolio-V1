@@ -18,7 +18,7 @@ const TOPIC_PRESETS: Record<string, { subject: string; message: string }> = {
       "Hi Ali,\n\nI am interested in a private SyncForge install.\n\nPackage: [private install $1.5k-$3.5k / full setup $4k-$8k]\nCalendar sources I need: [Google / Outlook ICS / count]\nTeam size:\nPreferred timeline:\n\nThanks.",
   },
   hire: {
-    subject: "Hire Ali Hamza",
+    subject: "Hire Huzaifa Naeem",
     message:
       "Hi Ali,\n\nI found you via Click Case Files / your portfolio.\n\nWhat I need built:\nWho will use it:\nTimeline:\nBudget range (optional):\n\nThanks.",
   },
@@ -53,7 +53,7 @@ export function ContactContent() {
     { icon: Mail, label: "Email", value: siteConfig.email, href: siteConfig.social.email },
     { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s+/g, "")}` },
     { icon: MapPin, label: "Location", value: siteConfig.location },
-    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/alihamza-fullstack-developer", href: siteConfig.social.linkedin },
+    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/huzaifa-naeem/", href: siteConfig.social.linkedin },
     { icon: Github, label: "GitHub", value: `github.com/${siteConfig.githubUsername}`, href: siteConfig.social.github },
   ]
 

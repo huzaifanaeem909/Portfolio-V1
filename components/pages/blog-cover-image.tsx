@@ -13,7 +13,7 @@ type Props = {
   sizes?: string
 }
 
-/** Cover image with Ali Hamza brand placeholder when missing or broken. */
+/** Cover image with Huzaifa Naeem brand placeholder when missing or broken. */
 export function BlogCoverImage({ src, alt, className, priority, sizes }: Props) {
   const resolved = resolveBlogCover(src)
   const [failed, setFailed] = useState(false)
@@ -26,7 +26,7 @@ export function BlogCoverImage({ src, alt, className, priority, sizes }: Props) 
   return (
     <Image
       src={show}
-      alt={alt || "Ali Hamza blog cover"}
+      alt={alt || "Huzaifa Naeem blog cover"}
       fill
       sizes={sizes || "(max-width: 768px) 100vw, 800px"}
       className={cn("object-cover", className)}

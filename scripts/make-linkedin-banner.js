@@ -30,7 +30,7 @@ async function main() {
   <text x="${textX}" y="172"
         font-family="Segoe UI, Arial, Helvetica, sans-serif"
         font-size="70" font-weight="700" letter-spacing="0.4"
-        fill="#F7F5F0">Ali Hamza</text>
+        fill="#F7F5F0">Huzaifa Naeem</text>
 
   <text x="${textX}" y="226"
         font-family="Segoe UI, Arial, Helvetica, sans-serif"
